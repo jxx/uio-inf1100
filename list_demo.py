@@ -92,7 +92,7 @@ for t_value, y_value in zip(t_values, y):
 # Add 5 to all elements in C_degrees
 for C in C_degrees:
     C = C + 5
-print C_degrees # WRONG
+print C_degrees # THIS IS  WRONG. THE C = C + 5 
 
 # Must index the list on the left hand side
 for i in range(len(C_degrees)):
