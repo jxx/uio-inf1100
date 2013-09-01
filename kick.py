@@ -25,7 +25,7 @@ for v in velocities:
     the ball experiences a drag force of %.2f N, 
     the gravity force is %.2f N,
     and the drag:gravity ratio is %.3f
-    """% (ball_mass, velocity, drag_force, gravity_force, force_ratio)
+    """ % (ball_mass, velocity, drag_force, gravity_force, force_ratio)
 
 """
 Run output: ~/uio-inf1100$ python kick.py
