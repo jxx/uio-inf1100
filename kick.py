@@ -40,4 +40,5 @@ Run output: ~/uio-inf1100$ python kick.py
     the ball experiences a drag force of 0.04 N, 
     the gravity force is 4.22 N,
     and the drag:gravity ratio is 0.008
+
 """
