@@ -33,17 +33,11 @@ for t_value, y_value in zip(t_values, y_values):
     print '%8.3f %8.3f' % (t_value, y_value)
 
 """
-~/uio-inf1100$ python 2.7_ball_table2.py 
-   0.204    0.000
-   0.408   -0.408
-   0.612   -1.223
-   0.815   -2.446
-   1.019   -4.077
-   1.223   -6.116
-   1.427   -8.563
-   1.631  -11.417
-   1.835  -14.679
-   2.039  -18.349
-   2.243  -22.426
-   2.446  -26.911
+After having computed the two lists of t and y values in the program
+from Exercise 2.7, store the two lists in a new list ty1. Write out a table
+of t and y values by traversing the data in the ty1 list. Thereafter, make
+a list ty2 which holds each row in the table of t and y values (ty1 is a
+list of table columns while ty2 is a list of table rows, as explained in
+Chapter 2.4). Write out the table by traversing the ty2 list. Name of
+program file: ball_table3.py.
 """
