@@ -1,3 +1,10 @@
+"""
+After having computed the two lists of t and y values in the program from 
+Exercise 2.7, store the two lists in a new list ty1. Write out a table
+of t and y values by traversing the data in the ty1 list. Thereafter, make a 
+list ty2 which holds each row in the table of t and y values. Write out the 
+table by traversing the ty2 list.
+"""
 
 t_values = []
 y_values = []
@@ -19,56 +26,52 @@ while t <= 2 * v0 / g + tolerance:
 # Using list comprehension for y_values:
 y_values = [v0 * t - 0.5 * g * t ** 2 for t in t_values]
 
-# Thereafter, transverse the lists with a for loop and write out
-# a nicely formatted table of t and y values 
-# (using either a zip or range construction).
-print "Using traverse:"
-for t_value, y_value in zip(t_values, y_values):
-    print '%8.3f %8.3f' % (t_value, y_value)
-print "-------------------"
-
-"""
-After having computed the two lists of t and y values in the program
-from Exercise 2.7, store the two lists in a new list ty1. Write out a table
-of t and y values by traversing the data in the ty1 list. Thereafter, make
-a list ty2 which holds each row in the table of t and y values (ty1 is a
-list of table columns while ty2 is a list of table rows, as explained in
-Chapter 2.4). Write out the table by traversing the ty2 list. Name of
-program file: ball_table3.py.
-"""
-import pprint
-
+# ty1 is a list of table columns:
 ty1 = [t_values, y_values]
+print '\n' + "   Traversing ty1:"
 
-print "Using pprint, ty1:"
-pprint.pprint(ty1)
-print "--------------------"
-
-print "By traversing the data in the ty1 list:"
 for i in range(len(t_values)):
     for j in range(len(ty1)):
         value = ty1[j][i]
         print '%8.3f' % value,
     print
 
-print "--------------------"
-
-
-print "--------------------"
-
-
-print "Using pprint, ty2:"
+#ty2 is a list of table rows:
 ty2 = []
 for t_value, y_value in zip(t_values, y_values):
     ty2.append([t_value, y_value])
 
-pprint.pprint(ty2)
-
-print "--------------------"
-
-print "Traverse ty2:"
+print '\n' + "   Traversing ty2:"
 for t_value, y_value in ty2:
     print '%8.3f %8.3f' % (t_value, y_value)
 
-print "--------------------"
 
+"""
+$ python 2.19_ball_table3.py 
+
+   Traversing ty1:
+   0.000    0.000
+   0.020    0.018
+   0.041    0.033
+   0.061    0.043
+   0.082    0.049
+   0.102    0.051
+   0.122    0.049
+   0.143    0.043
+   0.163    0.033
+   0.183    0.018
+   0.204   -0.000
+
+   Traversing ty2:
+   0.000    0.000
+   0.020    0.018
+   0.041    0.033
+   0.061    0.043
+   0.082    0.049
+   0.102    0.051
+   0.122    0.049
+   0.143    0.043
+   0.163    0.033
+   0.183    0.018
+   0.204   -0.000
+"""

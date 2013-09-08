@@ -1,6 +1,5 @@
 """
-Make a table of function values. 
-Write a program that prints a table with 
+Make a table of function values. Write a program that prints a table with 
 t values in the first columnn and the corresponding 
 y(t) = v0 * t - 0.5 * g * t ** 2 values in the second column
 """
@@ -25,9 +24,11 @@ while t <= 2 * v0 / g + tolerance:
 # Using list comprehension for y_values:
 y_values = [v0 * t - 0.5 * g * t ** 2 for t in t_values]
 
-# Thereafter, transverse the lists with a for loop and write out
-# a nicely formatted table of t and y values 
-# (using either a zip or range construction).
+"""
+Thereafter, transverse the lists with a for loop and write out a nicely 
+formatted table of t and y values (using either a zip or range construction).
+"""
+
 for t_value, y_value in zip(t_values, y_values):
     print '%8.3f %8.3f' % (t_value, y_value)
 
