@@ -1,36 +1,31 @@
-"""
-Make a table of function values. 
-Write a program that prints a table with 
-t values in the first columnn and the corresponding 
-y(t) = v0 * t - 0.5 * g * t ** 2 values in the second column
-"""
 
 t_values = []
 y_values = []
 
 # Set v0 = 1, g = 9.81, and n = 11
-v0 = 1.
+v0 = 1
 g = 9.81
 n = 11
+tolerance = 1E-14 # fudge since float operator is not precise
 
-for i in range(n+1):
-    
-    # Use n uniformly spaced t values throughout the interval [0, 2v0/g] 
-    t_step = 2 * v0 / g
-    t = (i + 1) * t_step
-    y_t = v0 * t - 0.5 * g * t ** 2
+# compute t values
+dt = (2 * v0/g - 0)/(n-1) # spacing of t values
+t = 0
 
-    # so that the t and y values are stored in two lists t and y.    
+while t <= 2 * v0 / g + tolerance:
     t_values.append(t)
-    y_values.append(y_t)
+    t = t + dt
 
-    #print '%.3f %.3f' % (t_values[i], y_values[i])
+# Using list comprehension for y_values:
+y_values = [v0 * t - 0.5 * g * t ** 2 for t in t_values]
 
 # Thereafter, transverse the lists with a for loop and write out
 # a nicely formatted table of t and y values 
 # (using either a zip or range construction).
+print "Using traverse:"
 for t_value, y_value in zip(t_values, y_values):
     print '%8.3f %8.3f' % (t_value, y_value)
+print "-------------------"
 
 """
 After having computed the two lists of t and y values in the program
@@ -41,3 +36,39 @@ list of table columns while ty2 is a list of table rows, as explained in
 Chapter 2.4). Write out the table by traversing the ty2 list. Name of
 program file: ball_table3.py.
 """
+import pprint
+
+ty1 = [t_values, y_values]
+
+print "Using pprint, ty1:"
+pprint.pprint(ty1)
+print "--------------------"
+
+print "By traversing the data in the ty1 list:"
+for i in range(len(t_values)):
+    for j in range(len(ty1)):
+        value = ty1[j][i]
+        print '%8.3f' % value,
+    print
+
+print "--------------------"
+
+
+print "--------------------"
+
+
+print "Using pprint, ty2:"
+ty2 = []
+for t_value, y_value in zip(t_values, y_values):
+    ty2.append([t_value, y_value])
+
+pprint.pprint(ty2)
+
+print "--------------------"
+
+print "Traverse ty2:"
+for t_value, y_value in ty2:
+    print '%8.3f %8.3f' % (t_value, y_value)
+
+print "--------------------"
+
