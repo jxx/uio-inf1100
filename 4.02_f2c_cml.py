@@ -11,6 +11,10 @@ def f2c(F):
 
 import sys
 
+if len(sys.argv)<2: # argv[0] program name, argv[1] first command line arg
+    print "Usage: %s F" % sys.argv[0]
+    sys.exit()
+
 #F = raw_input('F=? ')
 
 F = float(sys.argv[1])

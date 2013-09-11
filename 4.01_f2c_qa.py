@@ -9,12 +9,12 @@ def f2c(F):
     C =  (5.0 / 9) * (F - 32)
     return C
 
-F = raw_input('F=? ')
+F = raw_input('Give temperature in Fahrenheit=? ')
 F = float(F)
 
 C = f2c(F)
 
-print C
+print F, C
 
 
 
