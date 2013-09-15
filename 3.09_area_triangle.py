@@ -15,3 +15,8 @@ vertices = [v1, v2, v3]
 triangle1 = area(vertices)
 
 print 'Area of triangle is %.2f' % triangle1
+
+"""
+$ python 3.09_area_triangle.py 
+Area of triangle is 1.00
+"""
