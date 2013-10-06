@@ -1,0 +1,14 @@
+import sys
+
+try:
+    t = float(sys.argv[1])
+    v0 = float(sys.argv[2])
+except IndexError:
+    print 'Please provide t, v0 as numeric arguments on the command line, or type them in below'
+    t =  float(raw_input('t=? '))
+    v0 = float(raw_input('v0=? '))
+except:
+    print 'Error. Usage: '
+    print '$ python ', sys.argv[0], 't v0'
+    print 'where t and v0 are numbers'
+    sys.exit(1)
