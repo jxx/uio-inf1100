@@ -1,65 +1,81 @@
-"""
-Reads file with a x,y coordinate pair per line
-First line contains s, then x,y pairs.
+""" Reads file with GPS coordinates. 
+First line contains s, then x,y pairs. 
 s = time between readings, in seconds.
+The positions are stored as (x, y) coordinates in a file
+src/files/pos.dat with the an x and y number on each line, except
+for the first line which contains the value of s.
 """
 from scitools.std import *
-file  = 'examples/files/pos.dat'
 
+def saveplotpng(filename):
+    savefig(filename + '.png')
+    print 'Plot saved as ' + filename + '.png'
+
+file  = 'src/files/pos.dat' 
 infile = open(file,'r')
+
+# Load s into a float variable and the x and y numbers into two arrays
 s = float(infile.readline())
 
-# Set up empty lists
 x = []
 y = []
-vx = []
-vy = []
-
-
 for line in infile:
     numbers = line.split()
     x.append(float(numbers[0]))
     y.append(float(numbers[1]))
-
 x_array = array(x)
 y_array = array(y)
 infile.close
 
-# Velocity for time t is calculated using current t and t+1. 
-# We get the first values as current
 
-n=0
-x_curr = x_array[n]
-y_curr = y_array[n]
+# Plot the y coordinates versus the x coordinates
+plot(x_array, y_array, xlabel='x', ylabel='y',
+     title='x vs y')
+saveplotpng('6.07_x_vs_y')
 
-sint = int(s)
-print type(sint)
+""" Compute and plot the velocity of the movements."""
+# Compute arrays vx and vy with velocities
+# Calculated for t = 0..N-2
+# t has suffix _curr
+# t+1 has suffix _next
 
-index_set = range(len(x_array+1))
-plot_set = range(0,(len(x_array)-1)*sint,sint)
+N = len(x_array)
+index_set = range(N)
 
-#plot_set = linspace(0,(len(x_array-1)*s,s))
+# Empty lists for velocities
+vx_list = []
+vy_list = []
 
-print plot_set
+# Velocity is calculated forward, get first values for t=0
+t=0
+x_curr = x_array[t]
+y_curr = y_array[t]
 
-#while n <= len(x_array)-1:
-for n in index_set[1:]:
-    x_next = x_array[n]
-    y_next = y_array[n]
+# Continue from t=1:
+for t in index_set[1:]:
+    x_next = x_array[t]
+    y_next = y_array[t]
  
-    vx.append( (x_next - x_curr) / s )
-    vy.append( (y_next - y_curr) / s )
+    vx_list.append( (x_next - x_curr) / s )
+    vy_list.append( (y_next - y_curr) / s )
     x_curr = x_next
     y_curr = y_next
 
-#    n += 1
-    
-#plot(x_array, y_array)
+vx = array(vx_list)
+vy = array(vy_list)
 
-vx_array = array(vx)
-vy_array = array(vy)
+# Create set of seconds to use on x axis.
+t_values = linspace(0,(N-2)*s,N-1)
 
-print vx_array
-print vy_array
+# Plot velocities
+plot(t_values,vx,t_values,vy,
+     xlabel='time (s)', y_label = 'Velocity',
+     legend=('X velocity', 'Y velocity'),
+     title='Velocities')
+saveplotpng('6.07_velocity')
 
-plot(plot_set,vx_array,plot_set,vy_array)
+"""
+$ python 6.07_position2velocity.py 
+Plot saved as 6.07_x_vs_y.png
+Plot saved as 6.07_velocity.png
+"""
