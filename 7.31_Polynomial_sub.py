@@ -2,31 +2,70 @@
 Exercise 7.31. Implement subtraction of polynomials.
 Implement the special method __sub__ in class Polynomial from
 page 369. Name of program file: Polynomial_sub.py.
+
+IMPORTANT EXERCISE - POLYNOMIAL EXERCISE WILL BE ON THE EXAM
+
 """
 
 import numpy
 
 class Polynomial:
     def __init__(self, coefficients):
-        self.coeff = coefficients
+        self.coeff = coefficients # USES A LIST
 
     def __call__(self, x):
         """Evaluate the polynomial."""
         s = 0
         for i in range(len(self.coeff)):
-            s += self.coeff[i]*x**i
+            s += self.coeff[i]*x**i # GENERAL ELEMENT, I IN THE LIST
         return s
 
     def __add__(self, other):
+        """ Return Self + Other"""
+
+        # IF TEST IMPORTANT: TWO CASES, 
         # Start with the longest list and add in the other
+        # Self:   X X X X
+        # Other:  X X X 0
+        # Result: X X X X
         if len(self.coeff) > len(other.coeff):
-            result_coeff = self.coeff[:]  # copy!
+            result_coeff = self.coeff[:]  # copy SELF!
             for i in range(len(other.coeff)):
                 result_coeff[i] += other.coeff[i]
         else:
-            result_coeff = other.coeff[:] # copy!
+        # Self:   X X X 0
+        # Other:  X X X X
+        # Result: X X X X
+            result_coeff = other.coeff[:] # copy OTHER!
             for i in range(len(self.coeff)):
                 result_coeff[i] += self.coeff[i]
+        return Polynomial(result_coeff)
+
+    def __sub__(self, other):
+        """ Return self-other """
+        # Start with the longest list and add in the other
+
+        if len(self.coeff) > len(other.coeff):
+        # Self:   X X X X
+        # Other:  X X X 0
+        # Result: X X X X
+
+            result_coeff = self.coeff[:]  # copy!
+            for i in range(len(other.coeff)):
+                result_coeff[i] -= other.coeff[i]
+        else:
+        # Self:   X X X 0
+        # Other:  X X X X
+        # Result: X X X X
+            result_coeff = [0]*len(other.coeff)
+#            result_coeff = other.coeff[:] # copy!
+            for i in range(len(self.coeff)):
+                result_coeff[i] = self.coeff[i] - self.other[i]
+            for i in range(len(self.coeff), len(self.other)):
+                result_coeff[i] -= other.coeff[i]
+#    def __getitem__(self, i):
+#        return self.coeff[1]:
+
         return Polynomial(result_coeff)
 
     def __mul__(self, other):
@@ -93,4 +132,14 @@ def _test():
     print 'd/dx', p2, '  =  ', p4
 
 if __name__ == '__main__':
-    _test()
+#    _test()
+#    2 - x ** 3 + 0.5*x**4    [2, 0, 0, -3, 0.5] # Coeff list
+#    1 + x - x**3             [1, 1, 0, -1] 
+
+
+    p1 = Polynomial([2, 0, 0, -2, 0.5])
+    p2 = Polynomial([1, 1, 0, -1])
+
+    sub = p1 - p2
+
+    print sub
