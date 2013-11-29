@@ -1,0 +1,37 @@
+"""
+Exercise 8.2. Compute a probability.
+What is the probability of getting a number between 0.5 and 0.6
+when drawing uniformly distributed random numbers from the interval
+[0, 1)? To answer this question empirically, let a program draw N such
+random numbers using Python’s standard random module, count how
+many of them, M , that fall in the interval (0.5, 0.6), and compute the
+probability as M/N . Run the program with the four values N = 10i
+for i = 1, 2, 3, 6. Name of program file: compute_prob.py.
+"""
+
+print 'Exercise 8.2'
+
+import random
+import sys
+
+def do_experiment(N):
+
+    result = []
+
+    for i in range(N):
+        result.append = random.randrange(0,1)
+
+        # removes random element and appends to new list
+
+    return result < 0.6 and result > 0.5
+## continue editing from here
+
+num_experiments = int(sys.argv[1])
+num_successes = 0
+
+for i in range(num_experiments):
+    if do_experiment():
+        num_successes += 1
+
+print num_successes/float(num_experiments)
+    
