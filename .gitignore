@@ -1,5 +1,5 @@
 #Emacs temp files:
-src/
+src/*
 *~
 .\#*
 [#]*[#]
